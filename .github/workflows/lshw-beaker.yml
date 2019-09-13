@@ -1,6 +1,9 @@
 name: Upstream testing
 
-on: [push]
+on:
+  push:
+    branches:
+      - beaker
 
 jobs:
   build:
