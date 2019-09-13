@@ -1,0 +1,16 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Fetch upstream LSHW
+      run: |
+        git clone https://ezix.org/src/pkg/lshw.git
+        cd lshw
+        make DATADIR=$(readlink -f src)
