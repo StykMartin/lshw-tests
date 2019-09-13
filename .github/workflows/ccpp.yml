@@ -12,5 +12,15 @@ jobs:
     - name: Fetch upstream LSHW
       run: |
         git clone https://ezix.org/src/pkg/lshw.git
-        cd lshw
+    - name: Compile LSHW
+      run: |
+        pushd lshw
         make DATADIR=$(readlink -f src)
+        popd
+    - name: Compile LSHW tests
+      run: |
+        make
+    - name: Execute LSHW tests
+      run: |
+        LSHW=./lshw/src/lshw ./run-tests.sh
+        
